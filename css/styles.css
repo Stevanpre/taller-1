@@ -1,0 +1,176 @@
+/* Animaciones y estilos dinámicos */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #3498db;
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --card-background: #1e1e1e;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --accent-color: #3498db;
+    --border-color: #333333;
+    --glow-color: rgba(52, 152, 219, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #121212 0%, #232526 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInBody 1s ease;
+}
+
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+    animation: slideDown 0.8s cubic-bezier(.77,0,.18,1);
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.search-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeIn 1.2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#searchInput,
+#genreFilter {
+    padding: 0.8rem 1.2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    min-width: 200px;
+    background: white;
+    transition: 
+        border-color 0.3s,
+        box-shadow 0.3s,
+        transform 0.2s;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+#searchInput:focus,
+#genreFilter:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 16px var(--glow-color), 0 2px 8px var(--shadow-color);
+    transform: scale(1.04);
+}
+
+#searchInput {
+    flex: 1;
+    max-width: 400px;
+}
+
+#genreFilter {
+    background: linear-gradient(90deg, var(--primary-color) 60%, var(--secondary-color) 100%);
+    color: white;
+    cursor: pointer;
+    min-width: 150px;
+    transition: background 0.4s, color 0.4s;
+}
+
+#genreFilter option {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+#genreFilter:hover {
+    background: linear-gradient(90deg, var(--secondary-color) 60%, var(--primary-color) 100%);
+    border-color: var(--secondary-color);
+    color: #fff;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    margin-top: auto;
+    letter-spacing: 1px;
+    box-shadow: 0 -2px 16px var(--shadow-color);
+    animation: fadeInFooter 1.5s;
+}
+
+@keyframes fadeInFooter {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    animation: fadeIn 1.2s;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary-color);
+    background: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 
+        background 0.3s,
+        color 0.3s,
+        transform 0.2s,
+        box-shadow 0.3s;
+    min-width: 40px;
+    font-weight: 500;
+    box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+.pagination button:hover:not(:disabled),
+.pagination button.active {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 4px 16px var(--glow-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .search-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #searchInput,
+    #genreFilter {
+        width: 100%;
+        max-width: none;
+    }
+}
